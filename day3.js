@@ -426,4 +426,7 @@ function greeter(user, func) {
 console.log(greeter('John', greet));
 
 //29. Write a JavaScript function to get the function name. 
-myFunction.name
+let returnName = (func) => {
+    return func.name;
+  };
+  console.log(returnName(returnName));
