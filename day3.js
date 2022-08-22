@@ -200,7 +200,21 @@ function findFactor(num) {
 
 //14. Write a JavaScript function to convert an amount to coins. 
 
-
+function convertAmountToCoins(obj) {
+    if (obj[0] == 0) return [];
+    let amount = obj[0];
+    let coins = obj[1].sort((a, b) => { return b - a;});
+    let res = [], i = 0;
+    while (amount > 0 && i < coins.length) {
+        if (amount >= coins[i]) {
+            amount -= coins[i];
+            res.push(coins[i]);
+        } else {
+            i++;
+        }
+    }
+    return res;
+}
 
 //15, Write a JavaScript function to compute the value of bn where n is the exponent and b is the
 //bases. Accept b and n from the user and display the result. 
@@ -314,6 +328,24 @@ function makeid(length) {
 //21.Write a JavaScript function to get all possible subset with a fixed length (for example 2)
 //combinations in an array.
 
+function getSubset(arr, len) {
+    let res = [], sub = [];
+    
+    function getSubsetTill(idx) {
+        if (sub.length === len) {   
+            res.push(sub.slice());
+            return;
+        }
+        for (let i = idx; i < arr.length; i++) {
+            sub.push(arr[i]);
+            getSubsetTill(i + 1);
+            sub.pop();
+        }
+    }
+    
+    getSubsetTill(0);
+    return res;
+}
 
 
 
@@ -424,6 +456,29 @@ function greeter(user, func) {
 }
 
 console.log(greeter('John', greet));
+
+//28. Write a JavaScript program to pass a 'JavaScript function' as parameter. 
+function calculate(x, y, func) {
+    return func(x, y);
+}
+
+function plus(x, y) {
+    return x + y;
+}
+
+function minus(x, y) {
+    return x - y;
+}
+
+function multiply(x, y) {
+    return x * y;
+}
+
+function divide(x, y) {
+    return x / y;
+}
+
+
 
 //29. Write a JavaScript function to get the function name. 
 let returnName = (func) => {
